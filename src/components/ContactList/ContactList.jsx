@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ContactListItem from './ContactListItem/ContactListItem';
 
 function ContactList({ contacts }) {
@@ -13,5 +14,13 @@ function ContactList({ contacts }) {
     </ul>
   );
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  ),
+};
 
 export default ContactList;

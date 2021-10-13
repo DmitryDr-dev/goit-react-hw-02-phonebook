@@ -47,13 +47,15 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { state, formSubmitHandler, getFilteredContacts, changeFilter } =
+      this;
+    const { filter } = state;
 
     return (
       <div>
-        <AddContactForm onSubmit={this.formSubmitHandler} />
-        <ContactList contacts={this.getFilteredContacts()} />
-        <Filter value={filter} onChange={this.changeFilter} />
+        <AddContactForm onSubmit={formSubmitHandler} />
+        <ContactList contacts={getFilteredContacts()} />
+        <Filter value={filter} onChange={changeFilter} />
       </div>
     );
   }

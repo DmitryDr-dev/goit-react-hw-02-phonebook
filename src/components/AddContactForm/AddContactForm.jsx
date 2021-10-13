@@ -29,9 +29,11 @@ class AddContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.setState({ id: uuidv4() });
+    const { setState, props, state } = this;
 
-    this.props.onSubmit(this.state);
+    setState({ id: uuidv4() });
+
+    props.onSubmit(state);
   };
 
   // method to clear state
@@ -43,27 +45,29 @@ class AddContactForm extends Component {
   };
 
   render() {
+    const { handleSubmit, handleInputChange, nameInputId, telInputId } = this;
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameInputId}>Имя</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor={nameInputId}>Имя</label>
         <input
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
-          id={this.nameInputId}
-          onChange={this.handleInputChange}
+          id={nameInputId}
+          onChange={handleInputChange}
         />
-        <label htmlFor={this.telInputId}>Телефон</label>
+        <label htmlFor={telInputId}>Телефон</label>
         <input
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
-          id={this.telInputId}
-          onChange={this.handleInputChange}
+          id={telInputId}
+          onChange={handleInputChange}
         />
         <button type="submit">Add Contact</button>
       </form>
