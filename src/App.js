@@ -4,6 +4,7 @@ import AddContactForm from './components/AddContactForm/AddContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 import Section from './components/Section/Section';
+import Container from './components/Container/Container';
 
 class App extends Component {
   constructor() {
@@ -80,15 +81,19 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Phonebook</h1>
-        <AddContactForm onSubmit={formSubmitHandler} />
-        <Section title="Contacts">
-          <ContactList
-            contacts={getFilteredContacts()}
-            onDelete={this.onDeleteContact}
-          />
-          <Filter value={filter} onChange={changeFilter} />
-        </Section>
+        <Container>
+          <h1>Phonebook</h1>
+          <Section>
+            <AddContactForm onSubmit={formSubmitHandler} />
+          </Section>
+          <Section title="Contacts">
+            <ContactList
+              contacts={getFilteredContacts()}
+              onDelete={this.onDeleteContact}
+            />
+            <Filter value={filter} onChange={changeFilter} />
+          </Section>
+        </Container>
       </div>
     );
   }

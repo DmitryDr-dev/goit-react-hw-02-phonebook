@@ -1,0 +1,22 @@
+.Filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.FilterLabel {
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.FilterInput {
+  margin-bottom: 20px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  padding: 12px;
+  width: 100%;
+}
+
+.FilterInput:focus {
+  outline-color: var(--accent-color);
+}

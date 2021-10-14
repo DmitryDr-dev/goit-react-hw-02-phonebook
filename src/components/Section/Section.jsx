@@ -1,6 +1,8 @@
+import styles from './Section.module.css';
+
 function Section({ title, children }) {
   return (
-    <section className="section">
+    <section className={styles?.section}>
       {title && <h2>{title}</h2>}
       {children}
     </section>

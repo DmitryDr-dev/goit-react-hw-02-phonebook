@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
+import s from './AddContactForm.module.css';
 class AddContactForm extends Component {
   constructor() {
     super();
@@ -56,8 +56,10 @@ class AddContactForm extends Component {
     } = this;
 
     return (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={nameInputId}>Имя</label>
+      <form onSubmit={handleSubmit} className={s.addContactForm}>
+        <label htmlFor={nameInputId} className={s.addContactFormLabel}>
+          Имя
+        </label>
         <input
           type="text"
           name="name"
@@ -67,8 +69,11 @@ class AddContactForm extends Component {
           id={nameInputId}
           value={name}
           onChange={handleInputChange}
+          className={s.addContactFormInput}
         />
-        <label htmlFor={telInputId}>Телефон</label>
+        <label htmlFor={telInputId} className={s.addContactFormLabel}>
+          Телефон
+        </label>
         <input
           type="tel"
           name="number"
@@ -78,8 +83,11 @@ class AddContactForm extends Component {
           id={telInputId}
           value={number}
           onChange={handleInputChange}
+          className={s.addContactFormInput}
         />
-        <button type="submit">Add Contact</button>
+        <button type="submit" className={s.addContactFormBtn}>
+          Add Contact
+        </button>
       </form>
     );
   }
