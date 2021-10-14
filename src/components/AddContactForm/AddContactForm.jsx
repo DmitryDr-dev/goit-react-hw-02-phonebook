@@ -29,11 +29,11 @@ class AddContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { setState, props, state } = this;
+    const { props, state } = this;
 
-    setState({ id: uuidv4() });
+    const newContact = { ...state, id: uuidv4() };
 
-    props.onSubmit(state);
+    props.onSubmit(newContact);
   };
 
   // method to clear state

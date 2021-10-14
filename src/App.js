@@ -3,6 +3,7 @@ import { Component } from 'react';
 import AddContactForm from './components/AddContactForm/AddContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
+import Section from './components/Section/Section';
 
 class App extends Component {
   constructor() {
@@ -22,10 +23,32 @@ class App extends Component {
   }
 
   // method to process data sent on form submission
-  formSubmitHandler = state => {
+  formSubmitHandler = newContact => {
+    this.setState(prevState => {
+      const normalizedName = newContact.name.toLowerCase();
+
+      if (
+        prevState.contacts.find(
+          contact => contact.name.toLowerCase() === normalizedName,
+        )
+      ) {
+        alert(`${newContact.name} already exists!`);
+        return;
+      }
+
+      return {
+        contacts: [...prevState.contacts, newContact],
+      };
+    });
+  };
+
+  //
+  onDeleteContact = contactId => {
     this.setState(prevState => {
       return {
-        contacts: [...prevState.contacts, state],
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== contactId,
+        ),
       };
     });
   };
@@ -37,6 +60,7 @@ class App extends Component {
     });
   };
 
+  //
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -53,9 +77,15 @@ class App extends Component {
 
     return (
       <div>
+        <h1>Phonebook</h1>
         <AddContactForm onSubmit={formSubmitHandler} />
-        <ContactList contacts={getFilteredContacts()} />
-        <Filter value={filter} onChange={changeFilter} />
+        <Section title="Contacts">
+          <ContactList
+            contacts={getFilteredContacts()}
+            onDelete={this.onDeleteContact}
+          />
+          <Filter value={filter} onChange={changeFilter} />
+        </Section>
       </div>
     );
   }

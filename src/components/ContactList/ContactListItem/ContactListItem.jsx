@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 
-function ContactListItem({ contactName, contactNumber }) {
+function ContactListItem({ id, contactName, contactNumber, onDelete }) {
   return (
     <span>
       {contactName}: {contactNumber}
+      <button type="button" onClick={() => onDelete(id)}>
+        Delete
+      </button>
     </span>
   );
 }
