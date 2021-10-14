@@ -34,6 +34,8 @@ class AddContactForm extends Component {
     const newContact = { ...state, id: uuidv4() };
 
     props.onSubmit(newContact);
+
+    this.resetState();
   };
 
   // method to clear state
@@ -45,7 +47,13 @@ class AddContactForm extends Component {
   };
 
   render() {
-    const { handleSubmit, handleInputChange, nameInputId, telInputId } = this;
+    const {
+      handleSubmit,
+      handleInputChange,
+      nameInputId,
+      telInputId,
+      state: { name, number },
+    } = this;
 
     return (
       <form onSubmit={handleSubmit}>
@@ -57,6 +65,7 @@ class AddContactForm extends Component {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           id={nameInputId}
+          value={name}
           onChange={handleInputChange}
         />
         <label htmlFor={telInputId}>Телефон</label>
@@ -67,6 +76,7 @@ class AddContactForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
           id={telInputId}
+          value={number}
           onChange={handleInputChange}
         />
         <button type="submit">Add Contact</button>

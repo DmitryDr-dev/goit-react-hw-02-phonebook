@@ -71,9 +71,12 @@ class App extends Component {
   };
 
   render() {
-    const { state, formSubmitHandler, getFilteredContacts, changeFilter } =
-      this;
-    const { filter } = state;
+    const {
+      state: { filter },
+      formSubmitHandler,
+      getFilteredContacts,
+      changeFilter,
+    } = this;
 
     return (
       <div>
